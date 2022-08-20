@@ -3,9 +3,9 @@
     <div class="container mx-auto">
       <div class="flex items-center">
         <router-link
-          to="/"
+          to="/login"
           class="inline-block px-16 py-4 transition-colors hover:bg-purple-500 duration-300"
-          >Home</router-link
+          >Login</router-link
         >
         <router-link
           to="/todos"
