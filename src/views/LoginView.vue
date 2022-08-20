@@ -13,29 +13,28 @@ let isDisabled = ref(false);
 let errorMessage = ref("");
 let hasError = ref(false);
 
-function handleSubmit() {
+async function handleSubmit() {
   isDisabled.value = true;
   hasError.value = false;
   errorMessage.value = "";
 
-  axios
-    .post(`${baseUrl}/token`, {
+  try {
+    let response = await axios.post(`${baseUrl}/token`, {
       email: email.value,
       password: password.value,
-    })
-    .then(function () {
-      router.push({ path: "/todos" });
-    })
-    .catch(function (error) {
-      const {
-        response: {
-          data: { message },
-        },
-      } = error;
-      isDisabled.value = false;
-      hasError.value = true;
-      errorMessage.value = message;
     });
+
+    if (response) router.push({ path: "/todos" });
+  } catch (error) {
+    const {
+      response: {
+        data: { message },
+      },
+    } = error;
+    isDisabled.value = false;
+    hasError.value = true;
+    errorMessage.value = message;
+  }
 }
 </script>
 <template>
