@@ -1,11 +1,13 @@
+<!-- eslint-disable no-unused-vars -->
 <script setup>
 import { ref } from "vue";
-import axios from "axios";
 import { useRouter } from "vue-router";
 import ErrorAlert from "@/components/alerts/ErrorAlert.vue";
+import { useAuthStore } from "@/stores/auth.store";
 
-const baseUrl = process.env.VUE_APP_BASE_API_URL;
 const router = useRouter();
+
+const authStore = useAuthStore();
 
 let email = ref("");
 let password = ref("");
@@ -18,23 +20,21 @@ async function handleSubmit() {
   hasError.value = false;
   errorMessage.value = "";
 
-  try {
-    let response = await axios.post(`${baseUrl}/token`, {
-      email: email.value,
-      password: password.value,
-    });
+  const [error] = await authStore.login({
+    email: email.value,
+    password: password.value,
+  });
 
-    if (response) router.push({ path: "/todos" });
-  } catch (error) {
-    const {
-      response: {
-        data: { message },
-      },
-    } = error;
+  if (error) {
     isDisabled.value = false;
     hasError.value = true;
-    errorMessage.value = message;
+
+    const { response } = error;
+    errorMessage.value = response.data.data.message;
+    return;
   }
+
+  router.push({ name: "todos" });
 }
 </script>
 <template>

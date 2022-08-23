@@ -4,5 +4,5 @@ import TodoView from "@/views/TodoView.vue";
 export default {
   path: "/todos",
   component: LoggedinLayout,
-  children: [{ path: "", component: TodoView }],
+  children: [{ path: "", name: "todos", component: TodoView }],
 };
