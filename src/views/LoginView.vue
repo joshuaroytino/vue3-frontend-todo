@@ -1,4 +1,3 @@
-<!-- eslint-disable no-unused-vars -->
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
@@ -56,10 +55,16 @@ async function handleSubmit() {
             <fieldset :disabled="isDisabled">
               <!-- Email input -->
               <div class="mb-6">
+                <label
+                  for="login-email-address"
+                  class="form-label inline-block mb-2 text-gray-700"
+                  >Email Address</label
+                >
                 <input
+                  id="login-email-address"
                   type="email"
                   class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  placeholder="Email address"
+                  placeholder="Email Address"
                   v-model="email"
                   required
                 />
@@ -67,7 +72,13 @@ async function handleSubmit() {
 
               <!-- Password input -->
               <div class="mb-6">
+                <label
+                  for="login-password"
+                  class="form-label inline-block mb-2 text-gray-700"
+                  >Password</label
+                >
                 <input
+                  id="login-password"
                   type="password"
                   class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   placeholder="Password"
