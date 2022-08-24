@@ -27,10 +27,26 @@ export const useAuthStore = defineStore({
         return [error, null];
       }
     },
+    async logout() {
+      try {
+        const response = await axios.post(`${baseUrl}/logout`);
+
+        this.clearStorage();
+
+        return [null, response];
+      } catch (error) {
+        this.clearStorage();
+        return [error, null];
+      }
+    },
+    clearStorage() {
+      this.user = null;
+      localStorage.removeItem("user");
+    },
   },
   getters: {
     isLoggedIn() {
-      !!this.user;
+      return !!this.user;
     },
   },
 });
