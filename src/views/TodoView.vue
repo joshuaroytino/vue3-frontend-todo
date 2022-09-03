@@ -4,6 +4,17 @@
 
     <div class="mt-3">
       <div class="grid grid-cols-12 gap-4">
+        <div class="col-span-6">
+          <div class="p-8 bg-white shadow-md rounded">
+            <h2 class="text-xl">Add a todo</h2>
+            <input
+              type="text"
+              v-model="state.todoText"
+              @keydown.enter="addTodo"
+              class="p-2 mt-4 border rounded w-full"
+            />
+          </div>
+        </div>
         <div class="col-span-6 space-y-4 px-1" style="height: 500px">
           <div
             v-for="todo in state.todos"
@@ -44,17 +55,6 @@
           </div>
           <div v-if="state.todos.length === 0">
             You don't have any tasks to do.
-          </div>
-        </div>
-        <div class="col-span-6">
-          <div class="p-8 bg-white shadow-md rounded">
-            <h2 class="text-xl">Add a todo</h2>
-            <input
-              type="text"
-              v-model="state.todoText"
-              @keydown.enter="addTodo"
-              class="p-2 mt-4 border rounded w-full"
-            />
           </div>
         </div>
       </div>
