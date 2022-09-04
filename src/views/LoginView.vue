@@ -11,8 +11,9 @@ const authStore = useAuthStore();
 let email = ref("");
 let password = ref("");
 let isDisabled = ref(false);
-let errorMessage = ref("");
+
 let hasError = ref(false);
+let errorMessage = ref("");
 
 async function handleSubmit() {
   isDisabled.value = true;
@@ -28,8 +29,7 @@ async function handleSubmit() {
     isDisabled.value = false;
     hasError.value = true;
 
-    const { response } = error;
-    errorMessage.value = response.data.data.message;
+    errorMessage.value = error.response.data.message;
     return;
   }
 
@@ -50,10 +50,14 @@ async function handleSubmit() {
           />
         </div>
         <div class="md:w-8/12 lg:w-5/12 lg:ml-20">
+          <h2
+            class="flex justify-center mb-4 text-4xl text-slate-800 uppercase"
+          >
+            Sign In
+          </h2>
           <form @submit.prevent="handleSubmit">
             <ErrorAlert v-if="hasError">{{ errorMessage }}</ErrorAlert>
             <fieldset :disabled="isDisabled">
-              <!-- Email input -->
               <div class="mb-6">
                 <label
                   for="login-email-address"
@@ -70,7 +74,6 @@ async function handleSubmit() {
                 />
               </div>
 
-              <!-- Password input -->
               <div class="mb-6">
                 <label
                   for="login-password"
@@ -90,10 +93,10 @@ async function handleSubmit() {
               <div
                 class="flex justify-between items-center mb-6 flex-col lg:flex-row"
               >
-                <a
-                  href="#!"
+                <router-link
+                  to="/auth/register"
                   class="text-blue-600 hover:text-blue-700 focus:text-blue-700 active:text-blue-800 duration-200 transition ease-in-out"
-                  >No account yet? Register here</a
+                  >No account yet? Register here</router-link
                 >
                 <a
                   href="#!"
@@ -102,7 +105,6 @@ async function handleSubmit() {
                 >
               </div>
 
-              <!-- Submit button -->
               <button
                 type="submit"
                 class="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full"

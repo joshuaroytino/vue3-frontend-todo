@@ -5,11 +5,10 @@
     <div class="max-w-xl px-5 text-center">
       <h2 class="mb-2 text-[42px] font-bold text-zinc-800">404</h2>
       <p class="mb-2 text-lg text-zinc-500">Page not found.</p>
-      <router-link
-        to="/"
-        class="mt-3 inline-block w-96 rounded bg-purple-600 px-5 py-3 font-medium text-white shadow-md shadow-purple-500/20 hover:bg-purple-700"
-        >Go back to Home</router-link
-      >
+      <CallToAction>Go Back to Home</CallToAction>
     </div>
   </div>
 </template>
+<script setup>
+import CallToAction from "@/components/buttons/CallToAction.vue";
+</script>

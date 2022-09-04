@@ -27,6 +27,20 @@ export const useAuthStore = defineStore({
         return [error, null];
       }
     },
+    async register({ name, email, password, confirm_password }) {
+      try {
+        const response = await axios.post(`${baseUrl}/register`, {
+          name,
+          email,
+          password,
+          confirm_password,
+        });
+
+        return [null, response];
+      } catch (error) {
+        return [error, null];
+      }
+    },
     async logout() {
       try {
         const response = await axios.post(`${baseUrl}/logout`);

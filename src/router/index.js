@@ -3,12 +3,17 @@ import NotFoundView from "@/views/NotFoundView.vue";
 import authRoutes from "./auth.route";
 import todosRoute from "./todos.route";
 import { useAuthStore } from "@/stores/auth.store";
+import VerifyInform from "@/views/VerifyInform.vue";
 
 const routes = [
   {
     path: "/",
     name: "home",
     redirect: { name: "login" },
+  },
+  {
+    path: "/need-verification",
+    component: VerifyInform,
   },
   { ...todosRoute },
   { ...authRoutes },
@@ -21,7 +26,7 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to) => {
-  const publicPages = ["/auth/login"];
+  const publicPages = ["/auth/login", "/auth/register"];
   const isPublicPage = publicPages.includes(to.path);
   const authStore = useAuthStore();
 
