@@ -7,7 +7,7 @@ import CallToAction from "@/components/buttons/CallToAction.vue";
 const route = useRouter();
 const authStore = useAuthStore();
 
-let isSuccessful = false;
+let isSuccessful = ref(false);
 let message = ref("");
 
 async function handleRequest() {
@@ -18,7 +18,7 @@ async function handleRequest() {
   }
 
   if (success) {
-    isSuccessful = true;
+    isSuccessful.value = true;
     message.value = success.data.message;
   }
 }

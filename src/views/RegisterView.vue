@@ -12,13 +12,13 @@ let password = ref("");
 let confirm_password = ref("");
 let isDisabled = ref(false);
 
-let errorMessage = ref("");
-let successMessage = ref("");
+let message = ref("");
+let isSuccessful = ref(false);
 
 async function handleSubmit() {
+  isSuccessful.value = false;
   isDisabled.value = true;
-  errorMessage.value = "";
-  successMessage.value = "";
+  message.value = "";
 
   const [error, success] = await authStore.register({
     email: email.value,
@@ -29,13 +29,13 @@ async function handleSubmit() {
 
   if (error) {
     isDisabled.value = false;
-
-    errorMessage.value = error.response.data.message;
+    message.value = error?.response?.data?.message || error?.message;
 
     return;
   }
 
-  successMessage.value = success.data.message;
+  isSuccessful.value = true;
+  message.value = success?.data?.message;
   reset();
 }
 
@@ -67,11 +67,13 @@ function reset() {
             Create an Account
           </h2>
           <form @submit.prevent="handleSubmit">
-            <ErrorAlert v-if="errorMessage.length > 0" class="mb-2">{{
-              errorMessage
-            }}</ErrorAlert>
-            <SuccessAlert v-if="successMessage.length > 0">{{
-              successMessage
+            <ErrorAlert
+              v-if="!isSuccessful && message.length > 0"
+              class="mb-2"
+              >{{ message }}</ErrorAlert
+            >
+            <SuccessAlert v-if="isSuccessful && message.length > 0">{{
+              message
             }}</SuccessAlert>
             <fieldset :disabled="isDisabled">
               <div class="mb-6">

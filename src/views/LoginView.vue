@@ -12,13 +12,13 @@ let email = ref("");
 let password = ref("");
 let isDisabled = ref(false);
 
-let hasError = ref(false);
-let errorMessage = ref("");
+let isSuccessful = false;
+let message = ref("");
 
 async function handleSubmit() {
   isDisabled.value = true;
-  hasError.value = false;
-  errorMessage.value = "";
+  isSuccessful = false;
+  message.value = "";
 
   const [error] = await authStore.login({
     email: email.value,
@@ -27,12 +27,13 @@ async function handleSubmit() {
 
   if (error) {
     isDisabled.value = false;
-    hasError.value = true;
+    isSuccessful = false;
 
-    errorMessage.value = error.response.data.message;
+    message.value = error?.response?.data?.message || error?.message;
     return;
   }
 
+  isSuccessful = true;
   router.push({ name: "todos" });
 }
 </script>
@@ -56,7 +57,9 @@ async function handleSubmit() {
             Sign In
           </h2>
           <form @submit.prevent="handleSubmit">
-            <ErrorAlert v-if="hasError">{{ errorMessage }}</ErrorAlert>
+            <ErrorAlert v-if="!isSuccessful && message.length > 0">{{
+              message
+            }}</ErrorAlert>
             <fieldset :disabled="isDisabled">
               <div class="mb-6">
                 <label
