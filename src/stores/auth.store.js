@@ -53,6 +53,20 @@ export const useAuthStore = defineStore({
         return [error, null];
       }
     },
+    async verifyEmail(url) {
+      try {
+        const queryParams = url.query;
+
+        const response = await axios.get(
+          `${baseUrl}/verify-email/${url.params.id}/${url.params.hash}`,
+          { params: queryParams }
+        );
+
+        return [null, response];
+      } catch (error) {
+        return [error, null];
+      }
+    },
     clearStorage() {
       this.user = null;
       localStorage.removeItem("user");

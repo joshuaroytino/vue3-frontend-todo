@@ -25,16 +25,19 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach(async (to) => {
+router.beforeEach((to) => {
   const publicPages = ["/auth/login", "/auth/register"];
+  const statelessPages = ["verify-email"];
+
   const isPublicPage = publicPages.includes(to.path);
+  const isStatelessPage = statelessPages.includes(to.name);
   const authStore = useAuthStore();
 
-  if (isPublicPage && authStore.isLoggedIn) {
+  if (isPublicPage && !isStatelessPage && authStore.isLoggedIn) {
     return "/todos";
   }
 
-  if (!isPublicPage && !authStore.isLoggedIn) {
+  if (!isPublicPage && !isStatelessPage && !authStore.isLoggedIn) {
     return "/auth/login";
   }
 });
