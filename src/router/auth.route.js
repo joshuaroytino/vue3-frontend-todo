@@ -2,6 +2,7 @@ import GuestLayout from "@/views/GuestLayout.vue";
 import LoginView from "@/views/LoginView.vue";
 import RegisterView from "@/views/RegisterView.vue";
 import VerifyEmail from "@/views/VerifyEmail.vue";
+import ResendVerifyEmail from "@/views/ResendVerifyEmail.vue";
 
 export default {
   path: "/auth",
@@ -14,6 +15,11 @@ export default {
       path: "verify-email/:id/:hash",
       name: "verify-email",
       component: VerifyEmail,
+    },
+    {
+      path: "resend-verify-email",
+      name: "resend-verify-email",
+      component: ResendVerifyEmail,
     },
   ],
 };

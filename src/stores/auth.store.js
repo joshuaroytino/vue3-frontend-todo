@@ -67,6 +67,18 @@ export const useAuthStore = defineStore({
         return [error, null];
       }
     },
+    async resendEmailVerification(data) {
+      try {
+        const response = await axios.post(
+          `${baseUrl}/email/verification-notification`,
+          data
+        );
+
+        return [null, response];
+      } catch (error) {
+        return [error, null];
+      }
+    },
     clearStorage() {
       this.user = null;
       localStorage.removeItem("user");
