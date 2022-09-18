@@ -6,6 +6,7 @@ import SuccessAlert from "@/components/alerts/SuccessAlert.vue";
 import TextfieldForm from "@/components/forms/TextfieldForm.vue";
 import LoginLink from "@/components/links/auth/LoginLink.vue";
 import EmailVerificationLink from "@/components/links/auth/EmailVerificationLink.vue";
+import ForgotPasswordLink from "@/components/links/auth/ForgotPasswordLink.vue";
 
 const authStore = useAuthStore();
 
@@ -140,6 +141,7 @@ function reset() {
           <div class="flex flex-col items-left mb-6">
             <LoginLink />
             <EmailVerificationLink />
+            <ForgotPasswordLink />
           </div>
         </div>
       </div>

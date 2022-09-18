@@ -6,6 +6,7 @@ import { useAuthStore } from "@/stores/auth.store";
 import TextfieldForm from "@/components/forms/TextfieldForm.vue";
 import RegistrationLink from "@/components/links/auth/RegistrationLink.vue";
 import EmailVerificationLink from "@/components/links/auth/EmailVerificationLink.vue";
+import ForgotPasswordLink from "@/components/links/auth/ForgotPasswordLink.vue";
 
 const router = useRouter();
 
@@ -106,6 +107,7 @@ async function handleSubmit() {
           <div class="flex flex-col items-left mb-6">
             <RegistrationLink />
             <EmailVerificationLink />
+            <ForgotPasswordLink />
           </div>
         </div>
       </div>

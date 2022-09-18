@@ -6,6 +6,7 @@ import { useAuthStore } from "@/stores/auth.store";
 import LoginLink from "@/components/links/auth/LoginLink.vue";
 import RegistrationLink from "@/components/links/auth/RegistrationLink.vue";
 import TextfieldForm from "@/components/forms/TextfieldForm.vue";
+import ForgotPasswordLink from "@/components/links/auth/ForgotPasswordLink.vue";
 
 const authStore = useAuthStore();
 
@@ -31,6 +32,7 @@ async function handleSubmit() {
   if (success) {
     isSuccessful.value = true;
     message.value = success.data.message;
+    email.value = "";
   }
 
   isDisabled.value = false;
@@ -123,6 +125,7 @@ async function handleSubmit() {
             <div class="flex flex-col items-left mb-6">
               <LoginLink />
               <RegistrationLink />
+              <ForgotPasswordLink />
             </div>
           </div>
         </div>

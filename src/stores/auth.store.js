@@ -79,6 +79,15 @@ export const useAuthStore = defineStore({
         return [error, null];
       }
     },
+    async forgotPassword(data) {
+      try {
+        const response = await axios.post(`${baseUrl}/forgot-password`, data);
+
+        return [null, response];
+      } catch (error) {
+        return [error, null];
+      }
+    },
     clearStorage() {
       this.user = null;
       localStorage.removeItem("user");

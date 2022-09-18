@@ -26,7 +26,11 @@ const router = createRouter({
 });
 
 router.beforeEach((to) => {
-  const publicPages = ["/auth/login", "/auth/register"];
+  const publicPages = [
+    "/auth/login",
+    "/auth/register",
+    "/auth/forgot-password",
+  ];
   const statelessPages = ["verify-email", "resend-verify-email"];
 
   const isPublicPage = publicPages.includes(to.path);
