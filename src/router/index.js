@@ -37,7 +37,7 @@ router.beforeEach((to) => {
     return "/todos";
   }
 
-  if (!isPublicPage && !isStatelessPage && !authStore.isLoggedIn) {
+  if (!isPublicPage && !isStatelessPage) {
     return "/auth/login";
   }
 });
