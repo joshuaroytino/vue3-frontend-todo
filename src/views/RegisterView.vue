@@ -3,7 +3,9 @@ import { useAuthStore } from "@/stores/auth.store";
 import { ref } from "vue";
 import ErrorAlert from "@/components/alerts/ErrorAlert.vue";
 import SuccessAlert from "@/components/alerts/SuccessAlert.vue";
-import AuthLinks from "@/components/links/AuthLinks.vue";
+import TextfieldForm from "@/components/forms/TextfieldForm.vue";
+import LoginLink from "@/components/links/auth/LoginLink.vue";
+import EmailVerificationLink from "@/components/links/auth/EmailVerificationLink.vue";
 
 const authStore = useAuthStore();
 
@@ -78,64 +80,39 @@ function reset() {
             }}</SuccessAlert>
             <fieldset :disabled="isDisabled">
               <div class="mb-6">
-                <label
-                  for="register-name"
-                  class="form-label inline-block mb-2 text-gray-700"
-                  >Name</label
-                >
-                <input
+                <TextfieldForm
+                  label="Name"
                   id="register-name"
-                  type="text"
-                  class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  placeholder="Name"
                   v-model="name"
-                  required
+                  required="true"
                 />
               </div>
 
               <div class="mb-6">
-                <label
-                  for="register-email-address"
-                  class="form-label inline-block mb-2 text-gray-700"
-                  >Email Address</label
-                >
-                <input
+                <TextfieldForm
+                  label="Email Address"
                   id="register-email-address"
                   type="email"
-                  class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  placeholder="Email Address"
                   v-model="email"
-                  required
+                  required="true"
                 />
               </div>
 
               <div class="mb-6">
-                <label
-                  for="register-password"
-                  class="form-label inline-block mb-2 text-gray-700"
-                  >Password</label
-                >
-                <input
+                <TextfieldForm
                   id="register-password"
                   type="password"
-                  class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  placeholder="Password"
+                  label="Password"
                   v-model="password"
                   required
                 />
               </div>
 
               <div class="mb-6">
-                <label
-                  for="register-confirm-password"
-                  class="form-label inline-block mb-2 text-gray-700"
-                  >Confirm Password</label
-                >
-                <input
+                <TextfieldForm
                   id="register-confirm-password"
                   type="password"
-                  class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  placeholder="Confirm Password"
+                  label="Confirm Password"
                   v-model="confirm_password"
                   required
                 />
@@ -160,12 +137,9 @@ function reset() {
             </fieldset>
           </form>
           <hr class="mt-4 mb-6 border-t" />
-          <div
-            class="flex justify-between items-center mb-6 flex-col lg:flex-row"
-          >
-            <AuthLinks to="/login">
-              Already have an account? Login here
-            </AuthLinks>
+          <div class="flex flex-col items-left mb-6">
+            <LoginLink />
+            <EmailVerificationLink />
           </div>
         </div>
       </div>

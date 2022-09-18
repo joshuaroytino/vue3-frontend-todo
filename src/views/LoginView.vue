@@ -3,7 +3,9 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import ErrorAlert from "@/components/alerts/ErrorAlert.vue";
 import { useAuthStore } from "@/stores/auth.store";
-import AuthLinks from "@/components/links/AuthLinks.vue";
+import TextfieldForm from "@/components/forms/TextfieldForm.vue";
+import RegistrationLink from "@/components/links/auth/RegistrationLink.vue";
+import EmailVerificationLink from "@/components/links/auth/EmailVerificationLink.vue";
 
 const router = useRouter();
 
@@ -63,34 +65,22 @@ async function handleSubmit() {
             }}</ErrorAlert>
             <fieldset :disabled="isDisabled">
               <div class="mb-6">
-                <label
-                  for="login-email-address"
-                  class="form-label inline-block mb-2 text-gray-700"
-                  >Email Address</label
-                >
-                <input
+                <TextfieldForm
                   id="login-email-address"
                   type="email"
-                  class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  placeholder="Email Address"
+                  label="Email Address"
                   v-model="email"
-                  required
+                  required="true"
                 />
               </div>
 
               <div class="mb-6">
-                <label
-                  for="login-password"
-                  class="form-label inline-block mb-2 text-gray-700"
-                  >Password</label
-                >
-                <input
+                <TextfieldForm
                   id="login-password"
                   type="password"
-                  class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  placeholder="Password"
+                  label="Password"
                   v-model="password"
-                  required
+                  required="true"
                 />
               </div>
 
@@ -113,12 +103,9 @@ async function handleSubmit() {
             </fieldset>
           </form>
           <hr class="mt-4 mb-6 border-t" />
-          <div
-            class="flex justify-between items-center mb-6 flex-col lg:flex-row"
-          >
-            <AuthLinks to="/auth/register">
-              No account yet? Register here
-            </AuthLinks>
+          <div class="flex flex-col items-left mb-6">
+            <RegistrationLink />
+            <EmailVerificationLink />
           </div>
         </div>
       </div>

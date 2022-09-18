@@ -3,6 +3,9 @@ import { ref } from "vue";
 import ErrorAlert from "@/components/alerts/ErrorAlert.vue";
 import SuccessAlert from "@/components/alerts/SuccessAlert.vue";
 import { useAuthStore } from "@/stores/auth.store";
+import LoginLink from "@/components/links/auth/LoginLink.vue";
+import RegistrationLink from "@/components/links/auth/RegistrationLink.vue";
+import TextfieldForm from "@/components/forms/TextfieldForm.vue";
 
 const authStore = useAuthStore();
 
@@ -78,7 +81,7 @@ async function handleSubmit() {
             </div>
             <form
               @submit.prevent="handleSubmit"
-              class="px-8 pt-6 mb-4 bg-white rounded"
+              class="px-8 pt-6 bg-white rounded"
             >
               <ErrorAlert v-if="!isSuccessful && message.length > 0">{{
                 message
@@ -88,17 +91,10 @@ async function handleSubmit() {
               }}</SuccessAlert>
               <fieldset :disabled="isDisabled">
                 <div class="mb-4">
-                  <label
-                    class="form-label inline-block mb-2 text-gray-700"
-                    for="email"
-                  >
-                    Email Address
-                  </label>
-                  <input
-                    class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                  <TextfieldForm
                     id="email"
                     type="email"
-                    placeholder="Enter Email Address..."
+                    label="Email Address"
                     v-model="email"
                     required
                   />
@@ -124,21 +120,9 @@ async function handleSubmit() {
               </fieldset>
             </form>
             <hr class="mb-6 border-t" />
-            <div class="text-center">
-              <a
-                class="inline-block text-sm text-blue-400 hover:text-blue-800 file:duration-200 transition ease-in-out"
-                href="./register.html"
-              >
-                Create an Account!
-              </a>
-            </div>
-            <div class="text-center">
-              <a
-                class="inline-block text-sm text-blue-400 hover:text-blue-800 file:duration-200 transition ease-in-out"
-                href="./index.html"
-              >
-                Already have an account? Login!
-              </a>
+            <div class="flex flex-col items-left mb-6">
+              <LoginLink />
+              <RegistrationLink />
             </div>
           </div>
         </div>
