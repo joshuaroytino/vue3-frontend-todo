@@ -3,6 +3,7 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import ErrorAlert from "@/components/alerts/ErrorAlert.vue";
 import { useAuthStore } from "@/stores/auth.store";
+import AuthLinks from "@/components/links/AuthLinks.vue";
 
 const router = useRouter();
 
@@ -56,7 +57,7 @@ async function handleSubmit() {
           >
             Sign In
           </h2>
-          <form @submit.prevent="handleSubmit" class="mb-4">
+          <form @submit.prevent="handleSubmit">
             <ErrorAlert v-if="!isSuccessful && message.length > 0">{{
               message
             }}</ErrorAlert>
@@ -111,20 +112,13 @@ async function handleSubmit() {
               </button>
             </fieldset>
           </form>
-          <hr class="mb-6 border-t" />
+          <hr class="mt-4 mb-6 border-t" />
           <div
             class="flex justify-between items-center mb-6 flex-col lg:flex-row"
           >
-            <router-link
-              to="/auth/register"
-              class="text-sm text-blue-400 hover:text-blue-800 file:duration-200 transition ease-in-out"
-              >No account yet? Register here</router-link
-            >
-            <a
-              href="#!"
-              class="text-sm text-blue-400 hover:text-blue-800 file:duration-200 transition ease-in-out"
-              >Forgot password?</a
-            >
+            <AuthLinks to="/auth/register">
+              No account yet? Register here
+            </AuthLinks>
           </div>
         </div>
       </div>

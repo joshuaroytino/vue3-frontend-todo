@@ -3,6 +3,7 @@ import { useAuthStore } from "@/stores/auth.store";
 import { ref } from "vue";
 import ErrorAlert from "@/components/alerts/ErrorAlert.vue";
 import SuccessAlert from "@/components/alerts/SuccessAlert.vue";
+import AuthLinks from "@/components/links/AuthLinks.vue";
 
 const authStore = useAuthStore();
 
@@ -140,21 +141,6 @@ function reset() {
                 />
               </div>
 
-              <div
-                class="flex justify-between items-center mb-6 flex-col lg:flex-row"
-              >
-                <router-link
-                  to="/login"
-                  class="text-blue-600 hover:text-blue-700 focus:text-blue-700 active:text-blue-800 duration-200 transition ease-in-out"
-                  >Already have an account? Login here</router-link
-                >
-                <a
-                  href="#!"
-                  class="text-blue-600 hover:text-blue-700 focus:text-blue-700 active:text-blue-800 duration-200 transition ease-in-out"
-                  >Forgot password?</a
-                >
-              </div>
-
               <button
                 type="submit"
                 class="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full"
@@ -173,6 +159,14 @@ function reset() {
               </button>
             </fieldset>
           </form>
+          <hr class="mt-4 mb-6 border-t" />
+          <div
+            class="flex justify-between items-center mb-6 flex-col lg:flex-row"
+          >
+            <AuthLinks to="/login">
+              Already have an account? Login here
+            </AuthLinks>
+          </div>
         </div>
       </div>
     </div>
